@@ -3,10 +3,11 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { SearchAllUsers, getFinallyUsers,setCurrentUser } from "../searchApp/searchSlice";
+import { SearchAllUsers, setCurrentUser } from "../searchBar/searchSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-export function SearchUsersList() {
+
+const SearchUsersList = () => {
   const Users = useSelector(SearchAllUsers);
   const dispatch = useDispatch();
  
@@ -31,7 +32,7 @@ export function SearchUsersList() {
                 </Typography>
               </CardContent>
               <CardActions sx={{ justifyContent: "center", marginTop: 4 }}>
-                <Link to={`/users/${user.login}`} >
+                <Link to={`/user/${user.login}`} >
                   <Button
                     variant="contained"
                     sx={{ textTransform: "none" }}
@@ -51,3 +52,5 @@ export function SearchUsersList() {
     </div>
   );
 }
+
+export default SearchUsersList;

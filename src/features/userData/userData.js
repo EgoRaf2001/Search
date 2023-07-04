@@ -13,11 +13,11 @@ import PlaceIcon from "@mui/icons-material/Place";
 import EmailIcon from "@mui/icons-material/Email";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  currentUser,
   currentUserData,
   getFinallyUsers,
-} from "../searchApp/searchSlice";
+} from "../searchBar/searchSlice";
 import { useEffect } from "react";
+import { useParams} from "react-router-dom";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -30,13 +30,16 @@ const Item = styled(Paper)(({ theme }) => ({
   fontSize: 20,
 }));
 export function UserData() {
-  const userName = useSelector(currentUser);
   const user = useSelector(currentUserData);
   const dispatch = useDispatch();
+  const {id} = useParams();
 
   useEffect(() => {
-    dispatch(getFinallyUsers(userName));
-  }, [userName]);
+    if(id) {
+      dispatch(getFinallyUsers(id));
+    }
+  }, [id]);
+
   return (
     <div id={user.id} style={{ display: "inline-flex" }}>
       <div style={{ margin: 150 }}>
